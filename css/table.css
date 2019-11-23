@@ -1,169 +1,54 @@
-:root {
-	--table-first-col-width: 40px;
-	--table-second-col-width: 120px;
-	--max-row-height: 80px;
-	--min-row-height: 40px;
-	--td-padding-h: 12px;
-	--td-padding-v: 12px;
-}
-
 /*************************/
-/* Fixing first two columns */
+/* Fixing header row */
 /*************************/
 
-
-.bs-table {
-	border-collapse: separate !important;
+.table-sticky-container {
+  overflow-y: auto; 
+  height: 400px;
 }
 
-/* Remove extra borders from header */
-.bs-table > thead > tr > th {
-	border-top: none;
-	border-bottom: none;
+.table-sticky th {
+  position: -webkit-sticky;
+  position: sticky;
+  background-color: #fff;
+  top: 0;
+  z-index: 2;
 }
 
-/* Each row of thead */
-.bs-table > thead:first-child > tr:first-child > th {
-	min-height: var(--table-first-col-width) !important;
-	min-width: var(--table-first-col-width) !important;
+th:after,
+th:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
 }
 
-/* Inside headers, get first and second column */
-.bs-table > thead:first-child > tr:first-child > th:first-child,
-.bs-table > thead:first-child > tr:first-child > th:nth-child(2) {
-	position: absolute;
-	display: inline-block;
-	background-color: #fff;
-	/* background-color: var(--light); */
-	z-index: var(--th-row-z-index);
+th:before {
+  top: -1px;
+  border-top: 1px solid #fff;
 }
 
-/* Inside headers, get second column */
-.bs-table > thead:first-child > tr:first-child > th:nth-child(2) {
-	padding-left: var(--table-first-col-width) !important;
-	min-width: calc(var(--table-first-col-width) + var(--table-second-col-width)) !important;
+th:after {
+  bottom: -1px;
+  border-bottom: 1px solid var(--mid-light-grey);
 }
 
-/* Inside headers, get third column */
-.bs-table > thead:first-child > tr:first-child > th:nth-child(3) {
-	padding-left: calc(var(--table-first-col-width) + var(--table-second-col-width) + 10px) !important;
+/* .table-fix-head thead th {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  box-shadow: inset 0 1px 0 red, inset 0 -2px 0 red;
 }
 
-/* Each row of tbody */
-.bs-table > tbody > tr {
-	min-height: var(--table-first-col-width) !important;
-	min-width: var(--table-first-col-width) !important;
-}
+.table {
+  border-collapse: collapse;
+} */
 
-/* For each row, get first column */
-.bs-table > tbody > tr > td:first-child {
-	z-index: var(--th-icon-z-index);
-}
+/* table:not(tbody) {
+  border-collapse: initial !important;
+} */
 
-/* For each row, get first and second column */
-.bs-table > tbody > tr > td:first-child,
-.bs-table > tbody > tr > td:nth-child(2) {
-	position: absolute;
-	display: inline-block;
-	background-color: #fff;
-	min-height: 80px;
-}
-
-.bs-table > tbody > tr:hover td {
-	background-color: var(--light);
-}
-
-/* For the last row, get first and second column */
-.bs-table > tbody > tr:last-child > td:first-child,
-.bs-table > tbody > tr:last-child > td:nth-child(2) {
-	min-height: 40px;
-}
-
-/* For each row, get second column */
-.bs-table > tbody > tr > td:nth-child(2) {
-	padding-left: var(--table-first-col-width) !important;
-	min-width: calc(var(--table-first-col-width) + var(--table-second-col-width)) !important;
-	z-index: var(--th-ref-z-index);
-}
-
-/* For each row, get third column */
-.bs-table > tbody > tr > td:nth-child(3) {
-	padding-left: calc(var(--table-first-col-width) + var(--table-second-col-width) + 10px) !important;
-}
-
-/* Fix the min-width of address column */
-.bs-table #address_1 {
-	min-width: 250px !important;
-}
-
-.bs-table table { height: 1px; }
-.bs-table tr { height: 100%; }
-.bs-table th { padding: var(--td-padding-v) var(--td-padding-h) !important; }
-.bs-table td { height: 100%; max-height: var(--max-row-height) !important; padding: var(--td-padding-v) var(--td-padding-h) !important; }
-.bs-table tr:last-child td { max-height: var(--min-row-height) !important;  }
-
-.bs-table > thead:first-child > tr:first-child > th:nth-child(2)::after {
-	box-shadow: 10px 0 5px -2px #fff;
-	width: 20px;
-	height: 100%;
-	position: absolute;
-	content: close-quote;
-	top: 0;
-	right: 0;
-}
-
-.border-top {
-	border-top: 1px solid #dee2e6 !important;
-}
-
-/*************************/
-/* Table headers and sorting icons */
-/*************************/
-
-.bs-table th {
-	white-space: nowrap;
-	color: #000;
-	font-weight: 700 !important;
-	cursor: pointer;
-}
-
-.bs-table th .sorting {
-	position: relative;
-	cursor: pointer;
-  font-size: 0.875rem;
-}
-
-/* .bs-table th .sorting__icon::after, */
-.bs-table th .sorting__icon::before {
-	position: absolute;
-	opacity: 0;
-}
-
-.bs-table th .sorting__icon.asc::before {
-	content: "\2191";
-	left: 2px;
-	opacity: 1;
-}
-
-.bs-table th .sorting__icon.desc::before {
-	content: "\2193";
-	left: 2px;
-	opacity: 1;
-}
-
-.bs-table th .sorting__order {
-	vertical-align: super;
-	font-size: 0.675rem;
-	padding-left: 12px;
-	margin: 0;
-	color: var(--primary-green-dark);
-}
-
-/* .bs-table th .sorting__icon.asc::after,
-.bs-table th .sorting__icon.desc::after {
-	content: var(--sort-order-content);
-	font-size: 0.675rem;
-	left: 12px;
-	opacity: 1;
-	vertical-align: sub;
+/* table tbody {
+  border-collapse: collapse;
 } */

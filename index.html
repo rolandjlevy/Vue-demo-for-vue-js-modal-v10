@@ -175,12 +175,12 @@
     <!--/////////////////////////////////////////////////////////////-->
 
     <template id="table-template">
-      <div class="p-20">
+      <div class="table-sticky-container border-20-white border-bottom-0">
         <p class="m-0" v-if="!tableRows.length">Loading...</p>
-        <table v-else class="table table-hover p-0 m-0">
+        <table v-else class="table table-sticky table-hover p-0 m-0">
           <thead>
             <tr>
-                <th id="job_reference" scope="col">Name</th>
+                <th id="job_reference" scope="col">Source</th>
                 <th id="address_1" style="text-align: left;" scope="col">Description</th>
                 <th id="files" scope="col">Delete</th>
             </tr>

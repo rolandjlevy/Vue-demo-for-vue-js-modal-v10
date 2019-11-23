@@ -2,6 +2,7 @@
   --primary-green: #8cc63f;
   --primary-green-dark: #57912f;
   --mid-light-grey: #c6c6c6;
+  --light-grey: #dee2e6;
 }
 
 body {
@@ -26,6 +27,19 @@ html, body {
   border: 1px solid #ccc;
   background-color: rgb(244, 244, 244);
 }
+
+
+/***** Borders *****/
+
+.border-20-white {
+  border: 20px solid white;
+}
+
+.border-bottom-0 {
+  border-bottom: 0;
+}
+
+ 
 
 /***** Padding *****/
 
