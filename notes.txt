@@ -3,6 +3,14 @@ Vue.js Modal
 https://github.com/euvl/vue-js-modal/blob/master/README.md
 http://vue-js-modal.yev.io/
 
+Github repo
+=============
+https://github.com/rolandjlevy/Vue-demo-for-vue-js-modal-v10
+
+Stackoverflow help
+=============
+https://stackoverflow.com/questions/57166162/table-headers-positionsticky-and-border-issue/57170489
+
 Table editor
 =============
 https://html-online.com/editor/
