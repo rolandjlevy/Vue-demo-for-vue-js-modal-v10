@@ -1,7 +1,7 @@
 # Vue.js modal
 
 ## Description
-This demonstrates various examples of modals and prompts in Vue.js. It uses Yev Vlasenko's vue-js-modal and Boostrap. The custom component I've created is shared accross two individual apps.
+This demonstrates various examples of modals and prompts in Vue.js. It uses Yev Vlasenko's vue-js-modal and Boostrap. The custom component I've created is shared accross two separate apps.
 
 + [See the live demo](https://vue-demo-for-vue-js-modal-v10--rjlevy.repl.co/) 
 + [View the code on repl.it](https://repl.it/@rjlevy/Vue-demo-for-vue-js-modal-v10) 
