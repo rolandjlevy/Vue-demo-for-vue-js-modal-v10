@@ -97,12 +97,12 @@
 
       <h3 class="m-t-70">Tasks app</h3>
 
-      <button @click="openModal('measure-save-prompt')">
+      <button @click="openModal('save-measure-prompt')">
         Save Measure Prompt
       </button>
 
       <prompt-modal
-        name="measure-save-prompt"
+        name="save-measure-prompt"
         type="prompt"
         header="Save Measure"
         content="Please enter measure:"
@@ -116,7 +116,7 @@
           <p class="p-20 p-t-10 p-b-0">
             <input 
               v-model="slotpayload.inputvalue"
-              @keyup="$emit('update-measure-save-prompt', {key:'inputvalue', payload: slotpayload})" 
+              @keyup="$emit('update-save-measure-prompt', {key:'inputvalue', payload: slotpayload})" 
               v-focus 
               type="text" 
               class="w-100 p-5" 
@@ -124,22 +124,6 @@
           </p>
         </template>
 
-      </prompt-modal>
-
-      <button @click="openModal('edit-preset-modal')" class="m-r-5">
-        Table Modal (static)
-      </button>
-
-      <prompt-modal
-        name="edit-preset-modal"
-        type="modal"
-        header="Edit My Preset"
-        :content="table"
-        buttonleft="Cancel"
-        buttonright="OK"
-        :clicktoclose="false"
-        :closebutton="true"
-      >
       </prompt-modal>
 
       <button @click="openModal('table-modal')">
@@ -161,6 +145,22 @@
           <table-from-fetch :slotpayload="slotpayload" />
         </template>
 
+      </prompt-modal>
+
+      <button @click="openModal('edit-preset-modal')" class="m-r-5">
+        Table Modal (static)
+      </button>
+
+      <prompt-modal
+        name="edit-preset-modal"
+        type="modal"
+        header="Edit My Preset"
+        :content="table"
+        buttonleft="Cancel"
+        buttonright="OK"
+        :clicktoclose="false"
+        :closebutton="true"
+      >
       </prompt-modal>
 
       <section class="log p-10 m-t-20">
