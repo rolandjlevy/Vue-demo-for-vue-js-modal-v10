@@ -1,9 +1,18 @@
 # Vue.js modal
 
-### Live demo
-+ [Demo on repl.it](https://vue-demo-for-vue-js-modal-v10--rjlevy.repl.co/) 
+## Description
+This demonstrates various examples of modals and prompts in Vue.js and logs each action. It combines the vue-js-modal with Boostrap. The custom modal component is shared accross two seperate apps.
 
-### Resources
-+  [vue-js-modal on github](https://github.com/euvl/vue-js-modal/blob/master/README.md) 
-+  [vue-js-modal demo](http://vue-js-modal.yev.io/) 
-+  [News API](https://newsapi.org/) 
+> [View the live demo on repl.it](https://vue-demo-for-vue-js-modal-v10--rjlevy.repl.co/) 
+
+--- 
+
+## Resources
+>  [vue-js-modal on github](https://github.com/euvl/vue-js-modal/blob/master/README.md) 
+> [Bootstrap](https://getbootstrap.com)
+> [News API](https://newsapi.org/) 
+
+--- 
+
+## Credits
+> Thank you [Yev Vlasenko](https://github.com/euvl)
