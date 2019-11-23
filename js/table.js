@@ -4,15 +4,36 @@ const TableFromFetch = {
     tableRows: '',
     apiKey: '756ef978eb384d9cb3ecdab2d9bac0da'
   }),
+  props: {
+    slotpayload: {
+      type: Object,
+      default: {}
+    }
+  },
   methods: {
     async fetchNews() {
       const url = `https://newsapi.org/v2/top-headlines?country=gb&apiKey=${this.apiKey}`;
       const response = await fetch(url);
       const result = await response.json();
-      this.tableRows = result.articles;
+      this.tableRows = result.articles.map((article, index) => {
+        const obj = Object.assign({}, article, { id:index, selected:false })
+        return obj;
+      });
     },
     goToUrl(url) {
       window.open(url);
+    },
+    getSelected(key, id) {
+      return this.slotpayload[key].find(item => item.id === id);
+    },
+    selectRow(row) {
+      const found = this.tableRows.find(item => item.id === row.id);
+      found.selected = !found.selected;
+      const payload = this.tableRows.reduce((acc, item) => {
+        if (item.selected) acc.push(item.id);
+        return acc;
+      }, []);
+      this.$root.$emit('update-table-modal', {key: 'groupvalue', payload});
     }
   },
   mounted() {

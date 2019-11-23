@@ -55,7 +55,7 @@
           <p class="p-20 p-t-10 p-b-0">
             <input
               v-model="slotpayload.radiovalue" 
-              @change="$emit('update-delay-update-prompt', {key:'radiovalue', value: slotpayload})" 
+              @change="$emit('update-delay-update-prompt', {key:'radiovalue', payload: slotpayload})" 
               value="yes" 
               type="radio"
               id="radio-yes"
@@ -63,7 +63,7 @@
             <label for="radio-yes" class="cursor-pointer m-r-10">Yes</label> 
             <input
               v-model="slotpayload.radiovalue" 
-              @change="$emit('update-delay-update-prompt', {key:'radiovalue', value: slotpayload})" 
+              @change="$emit('update-delay-update-prompt', {key:'radiovalue', payload: slotpayload})" 
               value="no" 
               type="radio"
               id="radio-no"
@@ -71,7 +71,7 @@
             <label for="radio-no" class="cursor-pointer m-r-10">No</label> 
             <input
               v-model="slotpayload.radiovalue" 
-              @change="$emit('update-delay-update-prompt', {key:'radiovalue', value: slotpayload})" 
+              @change="$emit('update-delay-update-prompt', {key:'radiovalue', payload: slotpayload})" 
               value="on-hold" 
               type="radio"
               id="radio-on-hold"
@@ -116,7 +116,7 @@
           <p class="p-20 p-t-10 p-b-0">
             <input 
               v-model="slotpayload.inputvalue"
-              @keyup="$emit('update-measure-save-prompt', {key:'inputvalue', value: slotpayload})" 
+              @keyup="$emit('update-measure-save-prompt', {key:'inputvalue', payload: slotpayload})" 
               v-focus 
               type="text" 
               class="w-100 p-5" 
@@ -149,7 +149,7 @@
       <prompt-modal
         name="table-modal"
         type="modal"
-        header="Table"
+        header="Table modal (from News API)"
         :content="null"
         buttonleft="Cancel"
         buttonright="Save"
@@ -158,7 +158,7 @@
       >
         <!-- Slot content for table -->
         <template #slotcontent="{slotpayload}">
-          <table-from-fetch />
+          <table-from-fetch :slotpayload="slotpayload" />
         </template>
 
       </prompt-modal>
@@ -181,13 +181,13 @@
           <thead>
             <tr>
                 <th id="job_reference" scope="col">Source</th>
-                <th id="address_1" style="text-align: left;" scope="col">Description</th>
+                <th id="address_1" class="align-left" scope="col">Description</th>
                 <th id="files" scope="col">Delete</th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="row in tableRows" @click="goToUrl(row.url)" class="cursor-pointer">
-              <td class="font-size-14px font-weight-bold">{{row.source.id}}</td>
+            <tr v-for="row in tableRows" :class="{ 'selected':row.selected }" :id="row.id" :key="row.id" class="cursor-pointer" @click="selectRow(row)" >
+              <td class="font-size-14px font-weight-bold">{{row.source.id || 'unknown'}}</td>
               <td class="font-size-14px">{{row.title}}</td>
               <td class="font-size-14px text-center"><i class="fa fa-trash" aria-hidden="true"></i></td>
             </tr>
@@ -232,6 +232,9 @@
         <slot name="slotcontent" :slotpayload="payload"></slot>
         
         <p class="p-b-20"></p>
+
+        <!-- hasSlot: {{hasSlot}}<br>
+        payloadValues: {{payloadValues}}<br> -->
 
         <div class="d-flex justify-content-end border-top p-10">
           <button @mouseup="$modal.hide(name)" class="btn btn-secondary font-size-14px pointer m-r-10">{{buttonleft}}</button>

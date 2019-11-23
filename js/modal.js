@@ -36,7 +36,8 @@ const PromptModal = {
   data: () => ({
     payload: {
       inputvalue: null,
-      radiovalue: null
+      radiovalue: null,
+      groupvalue: []
     },
     widthOptions: {
       prompt: 350,
@@ -101,7 +102,13 @@ const PromptModal = {
   },
   computed: {
     payloadValues() {
-      return Object.values(this.payload).filter(item => !!item);
+      return Object.values(this.payload).filter(item => {
+        if (Array.isArray(item)) {
+          return !!item.filter(n => !!n).length;
+        } else {
+          return !!item;
+        }
+      });
     },
     hasSlot() {
       return !!this.$scopedSlots[this.slotName];
@@ -111,9 +118,14 @@ const PromptModal = {
     this.getWidth();
   },
   mounted() {
-    this.payloadDefault = { ...this.payload }
-    this.$parent.$on(`update-${name}`, ({key, value}) => {
-      this.payload[key] = value ? value[key] : null;
+    this.payloadDefault = { ...this.payload };
+    this.$parent.$on(`update-${this.name}`, ({key, payload, id}) => {
+      if (Array.isArray(this.payload[key])) {
+        // console.log(payload);
+        this.payload[key] = [...payload];
+      } else {
+        this.payload[key] = payload[key];
+      }
     });
   }
 }

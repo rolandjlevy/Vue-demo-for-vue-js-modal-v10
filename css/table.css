@@ -33,6 +33,14 @@ th:after {
   border-bottom: 1px solid var(--mid-light-grey);
 }
 
+.selected {
+  background-color: var(--mid-light-grey) !important;
+}
+
+.selected:hover {
+  background-color: var(--mid-grey) !important;
+}
+
 /* .table-fix-head thead th {
   position: -webkit-sticky;
   position: sticky;
