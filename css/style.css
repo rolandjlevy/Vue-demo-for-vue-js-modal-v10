@@ -1,0 +1,186 @@
+:root {
+  --primary-green: #8cc63f;
+  --primary-green-dark: #57912f;
+  --mid-light-grey: #c6c6c6;
+}
+
+body {
+  margin: 1rem;
+}
+
+html, body {
+  font-family: Arial, Helvetica, sans-serif, Source Sans Pro;
+}
+
+.v--modal-overlay[data-modal*="prompt"],
+.v--modal-overlay[data-modal*="modal"] {
+  background: #00000099;
+}
+
+.v--modal {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33) !important;
+}
+
+.log {
+  width: 100%;
+  border: 1px solid #ccc;
+  background-color: rgb(244, 244, 244);
+}
+
+/***** Padding *****/
+
+.p-20 {
+  padding: 20px !important;
+}
+
+.p-10 {
+  padding: 10px !important;
+}
+
+.p-t-0 {
+  padding-top: 0px !important;
+}
+
+.p-t-10 {
+  padding-top: 10px !important;
+}
+
+.p-b-0 {
+  padding-bottom: 0px !important;
+}
+
+.p-b-20 {
+  padding-bottom: 20px !important;
+}
+
+.p-r-10 {
+  padding-right: 10px !important;
+}
+
+.p-r-5 {
+  padding-right: 5px !important;
+}
+
+.p-5 {
+  padding: 5px !important;
+}
+
+.p-0 {
+  padding: 0 !important;
+}
+
+
+/***** Margins *****/
+
+p {
+  margin: 0;
+}
+
+.m-r-5 {
+  margin-right: 5px !important;
+}
+
+.m-r-10 {
+  margin-right: 10px !important;
+}
+
+.m-0 {
+  margin: 0 !important;
+}
+
+.m-t-20 {
+  margin-top: 20px !important;
+}
+
+.m-t-70 {
+  margin-top: 50px !important;
+}
+
+/***** Forms *****/
+
+input {
+  border: 1px solid var(--mid-light-grey);
+  outline: none;
+}
+
+input:focus {
+  border: 1px solid var(--primary-green);
+}
+
+/***** Cursors *****/
+
+.cursor-pointer {
+  cursor: pointer !important;
+}
+
+.cursor-move {
+  cursor: move !important;
+}
+
+
+/***** Borders *****/
+
+.border-top {
+  border-top: 1px solid var(--mid-light-grey);
+}
+
+
+/***** Fonts and text *****/
+
+.font-size-20px {
+  font-size: 1.25rem !important;
+}
+
+.font-size-16px {
+  font-size: 1rem !important;
+}
+
+.font-size-14px {
+  font-size: 0.875rem !important;
+}
+
+.text-black {
+  color: #000;
+}
+
+.text-white {
+  color: #fff;
+}
+
+
+/***** Buttons *****/
+
+.btn-warning {
+  background-color: #ff9900;
+  color: #fff;
+}
+
+.btn-warning:disabled {
+  background-color: #838383;
+  border: 1px solid #838383;
+  color: #fff;
+  cursor: not-allowed;
+}
+
+.btn-warning:not(:disabled):hover {
+  background-color: #e98c00;
+  color: #fff;
+}
+
+.btn-warning, .btn-secondary, .btn-primary  {
+  transition: background 0.25s ease-in-out;
+  padding: 2px 8px;
+  border-radius: 3px;
+  min-width: 70px;
+}
+
+
+/***** General *****/
+
+.line-height-1 {
+  line-height: 1;
+}
+
+.border-bottom {
+  border-bottom: 1px solid var(--mid-light-grey);
+}

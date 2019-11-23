@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>repl.it</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/table.css" rel="stylesheet" type="text/css" />
+    <link href="/css/style.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+
+    <div id="delays-app">
+
+    <!--/////////////////////////////////////////////////////////////-->
+    <!-- Delays app -->
+    <!--/////////////////////////////////////////////////////////////-->
+
+      <h3>Delays app</h3>
+      
+      <button @click="openModal('delay-update-modal')" class="m-r-5">
+        Update Delay Modal
+      </button>
+      
+      <prompt-modal
+        name="delay-update-modal"
+        type="modal"
+        header="Update Delay"
+        content="You are about to update this delay. Are you sure? Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        buttonleft="Cancel"
+        buttonright="OK"
+        :clicktoclose="false"
+        :closebutton="true"
+      >
+      </prompt-modal>
+
+      <button @click="openModal('delay-publish-prompt')">
+        Publish Delay Prompt
+      </button>
+
+      <prompt-modal
+        name="delay-publish-prompt"
+        type="prompt"
+        header="Publish Delay"
+        content="Do you want to publish this Delay?"
+        buttonleft="Cancel"
+        buttonright="Save"
+        :clicktoclose="true"
+        :closebutton="false"
+      >
+        <!-- Form elements slot -->
+        <template #slotcontent="{slotpayload}">
+          <p class="p-20 p-t-10 p-b-0">
+            <input
+              v-model="slotpayload.radiovalue" 
+              @change="$emit('update-delay-update-prompt', {key:'radiovalue', value: slotpayload})" 
+              value="yes" 
+              type="radio"
+              id="radio-yes"
+            /> 
+            <label for="radio-yes" class="cursor-pointer m-r-10">Yes</label> 
+            <input
+              v-model="slotpayload.radiovalue" 
+              @change="$emit('update-delay-update-prompt', {key:'radiovalue', value: slotpayload})" 
+              value="no" 
+              type="radio"
+              id="radio-no"
+            /> 
+            <label for="radio-no" class="cursor-pointer m-r-10">No</label> 
+            <input
+              v-model="slotpayload.radiovalue" 
+              @change="$emit('update-delay-update-prompt', {key:'radiovalue', value: slotpayload})" 
+              value="on-hold" 
+              type="radio"
+              id="radio-on-hold"
+            /> 
+            <label for="radio-on-hold" class="cursor-pointer m-r-10">On hold</label>  
+          </p>
+        </template>
+
+      </prompt-modal>
+
+      <section class="log p-10 m-t-20">
+        <p><strong>Log</strong></p>
+        <p v-html="log" class="font-size-14px"></p>
+      </section>
+
+    </div>
+
+    <!--/////////////////////////////////////////////////////////////-->
+    <!-- Tasks app -->
+    <!--/////////////////////////////////////////////////////////////-->
+
+    <div id="tasks-app">
+
+      <h3 class="m-t-70">Tasks app</h3>
+
+      <button @click="openModal('measure-save-prompt')">
+        Save Measure Prompt
+      </button>
+
+      <prompt-modal
+        name="measure-save-prompt"
+        type="prompt"
+        header="Save Measure"
+        content="Please enter measure:"
+        buttonleft="Cancel"
+        buttonright="Save"
+        :clicktoclose="true"
+        :closebutton="false"
+      >
+        <!-- Form elements slot -->
+        <template #slotcontent="{slotpayload}">
+          <p class="p-20 p-t-10 p-b-0">
+            <input 
+              v-model="slotpayload.inputvalue"
+              @keyup="$emit('update-measure-save-prompt', {key:'inputvalue', value: slotpayload})" 
+              v-focus 
+              type="text" 
+              class="w-100 p-5" 
+            />
+          </p>
+        </template>
+
+      </prompt-modal>
+
+      <button @click="openModal('edit-preset-modal')" class="m-r-5">
+        Table Modal (static)
+      </button>
+
+      <prompt-modal
+        name="edit-preset-modal"
+        type="modal"
+        header="Edit My Preset"
+        :content="table"
+        buttonleft="Cancel"
+        buttonright="OK"
+        :clicktoclose="false"
+        :closebutton="true"
+      >
+      </prompt-modal>
+
+      <button @click="openModal('table-modal')">
+        Table Modal (from news API)
+      </button>
+
+      <prompt-modal
+        name="table-modal"
+        type="modal"
+        header="Table"
+        :content="null"
+        buttonleft="Cancel"
+        buttonright="Save"
+        :clicktoclose="true"
+        :closebutton="false"
+      >
+        <!-- Slot content for table -->
+        <template #slotcontent="{slotpayload}">
+          <table-from-fetch />
+        </template>
+
+      </prompt-modal>
+
+      <section class="log p-10 m-t-20">
+        <p><strong>Log</strong></p>
+        <p v-html="log" class="font-size-14px"></p>
+      </section>
+
+    </div>
+
+    <!--/////////////////////////////////////////////////////////////-->
+    <!-- Template for table slot -->
+    <!--/////////////////////////////////////////////////////////////-->
+
+    <template id="table-template">
+      <div class="p-20">
+        <p class="m-0" v-if="!tableRows.length">Loading...</p>
+        <table v-else class="table table-hover p-0 m-0">
+          <thead>
+            <tr>
+                <th id="job_reference" scope="col">Name</th>
+                <th id="address_1" style="text-align: left;" scope="col">Description</th>
+                <th id="files" scope="col">Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="row in tableRows" @click="goToUrl(row.url)" class="cursor-pointer">
+              <td class="font-size-14px font-weight-bold">{{row.source.id}}</td>
+              <td class="font-size-14px">{{row.title}}</td>
+              <td class="font-size-14px text-center"><i class="fa fa-trash" aria-hidden="true"></i></td>
+            </tr>
+          </tbody>
+      </table>
+      </div>
+    </template>
+
+    <!--/////////////////////////////////////////////////////////////-->
+    <!-- Template for main modal component -->
+    <!--/////////////////////////////////////////////////////////////-->
+
+    <template id="prompt-modal-template">
+
+      <modal
+        :name="name"
+        @before-open="beforeOpen"
+        @before-close="beforeClose"
+        draggable=".window-header"
+        adaptive
+        height="auto"
+        :width="width"
+        :click-to-close="clicktoclose"
+        :scrollable="false"
+      >
+
+        <div v-if="closebutton" slot="top-right">
+          <button @mouseup="$modal.hide(name)">&times;</button>
+        </div>
+
+        <div class="d-flex justify-content-between window-header cursor-move border-bottom p-10">
+          <span>
+            <i class="fa fa-align-justify handle m-r-5"></i>
+            <span class="font-size-16px text-black font-weight-bold text-black p-0 m-0">{{header}}</span>
+          </span>
+          <span v-if="closebutton" @mouseup="$modal.hide(name)" class="cursor-pointer font-size-20px line-height-1"
+          >&times;</span>
+        </div>
+
+        <div v-if="content" class="p-20 p-b-0" v-html="content"></div>
+
+        <slot name="slotcontent" :slotpayload="payload"></slot>
+        
+        <p class="p-b-20"></p>
+
+        <div class="d-flex justify-content-end border-top p-10">
+          <button @mouseup="$modal.hide(name)" class="btn btn-secondary font-size-14px pointer m-r-10">{{buttonleft}}</button>
+          <button :disabled="hasSlot && !payloadValues.length" @click="confirmPrompt" @mouseup="$modal.hide(name)" class="btn btn-warning font-size-14px pointer">{{buttonright}}</button>
+        </div>
+
+      </modal>
+    </template>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-js-modal@1.3.31/dist/index.min.js"></script>
+    <script src="/js/table.js"></script>
+    <script src="/js/modal.js"></script>
+    <script src="/js/apps.js"></script>
+
+  </body>
+</html>

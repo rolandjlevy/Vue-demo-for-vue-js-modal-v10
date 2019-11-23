@@ -1,0 +1,8 @@
+Vue.js Modal
+=============
+https://github.com/euvl/vue-js-modal/blob/master/README.md
+http://vue-js-modal.yev.io/
+
+Table editor
+=============
+https://html-online.com/editor/
