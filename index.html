@@ -180,14 +180,16 @@
         <table v-else class="table table-sticky table-hover p-0 m-0">
           <thead>
             <tr>
-                <th id="job_reference" scope="col">Source</th>
-                <th id="address_1" class="align-left" scope="col">Description</th>
-                <th id="files" scope="col">Delete</th>
+                <th id="id" scope="col">ID</th>
+                <th id="source" scope="col">Source</th>
+                <th id="description" scope="col">Description</th>
+                <th id="icon" scope="col">Delete</th>
             </tr>
           </thead>
           <tbody>
             <tr v-for="row in tableRows" :class="{ 'selected':row.selected }" :id="row.id" :key="row.id" class="cursor-pointer" @click="selectRow(row)" >
-              <td class="font-size-14px font-weight-bold">{{row.source.id || 'unknown'}}</td>
+              <td class="font-size-14px font-weight-bold">{{row.id}}</td>
+              <td class="font-size-14px">{{row.source.id || 'unknown'}}</td>
               <td class="font-size-14px">{{row.title}}</td>
               <td class="font-size-14px text-center"><i class="fa fa-trash" aria-hidden="true"></i></td>
             </tr>
