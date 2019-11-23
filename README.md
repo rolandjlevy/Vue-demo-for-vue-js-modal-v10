@@ -8,9 +8,9 @@ This demonstrates various examples of modals and prompts in Vue.js. It uses Yev 
 --- 
 
 ## Resources
->  [vue-js-modal on github](https://github.com/euvl/vue-js-modal/blob/master/README.md) 
-> [Bootstrap](https://getbootstrap.com)
-> [News API](https://newsapi.org/) 
++  [vue-js-modal on github](https://github.com/euvl/vue-js-modal/blob/master/README.md) 
++ [Bootstrap](https://getbootstrap.com)
++ [News API](https://newsapi.org/) 
 
 --- 
 
