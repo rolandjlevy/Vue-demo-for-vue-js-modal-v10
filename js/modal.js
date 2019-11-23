@@ -119,9 +119,8 @@ const PromptModal = {
   },
   mounted() {
     this.payloadDefault = { ...this.payload };
-    this.$parent.$on(`update-${this.name}`, ({key, payload, id}) => {
+    this.$parent.$on(`update-${this.name}`, ({key, payload}) => {
       if (Array.isArray(this.payload[key])) {
-        // console.log(payload);
         this.payload[key] = [...payload];
       } else {
         this.payload[key] = payload[key];
